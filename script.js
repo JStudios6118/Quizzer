@@ -1,8 +1,10 @@
-// Questions
+// Question Set Loaded
 var quiz = [];
 
+// Stores responses after submit
 var answers = [];
 
+//All of the sets you can load currently
 var sets = [
 
   [
@@ -21,12 +23,15 @@ var sets = [
 
 ]
 
+// Stores hom many you got right/wrong
 var right = 0
 var wrong = 0
 
+// Gives info about how you scored
 function stats(){
   var codeString = ""
   for (y=0; y < answers.length; y++){
+    // Creates Result List
     var current = answers[y].split(" ");
     var got = "";
     if (current[1] === current[2]){
@@ -40,13 +45,14 @@ function stats(){
     codeString += "<h4>Question: " + current[0] + ": " + got + "</h4>";
 
   }
+  // Show the results
   document.getElementById("allQuestions").innerHTML = codeString;
 }
 
 // Check Responses
 function grabResponses(){
   document.getElementById("submitBTN").disabled = true;
-
+  // Reset right/wrong/answers
   right = 0
   wrong = 0
   answers = [];
@@ -54,6 +60,7 @@ function grabResponses(){
   for(var t = 0; t < quiz.length; t++){
     var grabId = "answerInput" + t.toString();
     var val = document.getElementById(grabId).value;
+    // Check the answers
     if (parseInt(val, 10) === quiz[t][2]){
       // Correct
       answers.push(t+1 + " " + val + " " + quiz[t][2]);
@@ -68,12 +75,14 @@ function grabResponses(){
       wrong += 1
     }
   }
+  // Return data for the user
   document.getElementById("output").value = answers;
   document.getElementById("outOf").innerHTML = "<hr><h3>Results: " + right + "/" + (right+wrong) + " Correct";
   document.getElementById("right").innerHTML = "<h4 id='results'>Correct: " + right + "</h4>";
   document.getElementById("wrong").innerHTML = "<h4 id='results'>Incorrect: " + wrong + "</h4>";
   document.getElementById("reset").innerHTML = "<hr><button id='resetBTN' onclick='reset()'>Reset</button><input id='hideQ' value='Hide Questions' type='button' onclick='hideQuestions()'><p></p>";
 
+  // Scroll to resetBTN button
   document.getElementById('resetBTN').scrollIntoView();
   stats()
 }
@@ -83,6 +92,7 @@ function reload(){
   var msg = "";
   var valid = true;
 
+  // Tells how many questions are in the current quiz
   if(quiz.length > 0 && quiz.length < 2){
     msg = "There is one question";
   } else if (quiz.length > 1){
@@ -117,6 +127,7 @@ var quest = document.getElementById("questionContainer");
 var hidden = true;
 var hide = false;
 
+// Hides the questions
 function hideQuestions(){
   if (hide === true){
     quest.style.display = "inline";
@@ -130,6 +141,7 @@ function hideQuestions(){
   }
 }
 
+// Hides and shows the set select
 function hideAndShow(){
   if (hidden === true){
     setsSel.style.display = "inline";
@@ -140,6 +152,7 @@ function hideAndShow(){
   }
 }
 
+// Resets the quiz
 function reset(){
   document.getElementById("submitBTN").disabled = false;
   quiz = [];
@@ -147,15 +160,18 @@ function reset(){
   reload()
 }
 
+// Swaps sets
 function changeSet(setData){
   quiz = []
   quiz = sets[setData];
   reload()
 }
 
+// Work in progress. Help with this is appreciated. I have some other HTML in the HTML file that is with the #sets div
 function customSet(){
   data = document.getElementById("pasteCode").value
   sets.append(data)
 }
 
+// Sets up the site
 reload();
