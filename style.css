@@ -1,0 +1,10 @@
+* {
+  font-family: Verdana, Tahoma, sans-serif;
+  scroll-behavior: smooth;
+}
+#answer {
+  font-weight: normal;
+}
+#sets {
+  display: none;
+}

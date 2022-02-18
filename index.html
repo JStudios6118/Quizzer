@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Quizzer</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1 id="top">Quizzer</h1>
+    <button onclick='hideAndShow()'>Select Quiz Set</button>
+
+    <div id="sets">
+      <hr>
+      <button onclick='changeSet(0)'>Sample_Set1</button>
+      <button onclick='changeSet(1)'>Python Syntax</button>
+      <button onclick='changeSet(2)'>Food Groups</button>
+      <button onclick='changeSet(3)'>Animals</button>
+      <!--<br><input type="text" id="pasteCode" placeholder="Custom Set - Paste Here"><input type="button" value="Load" onclick="customSet()"><br>-->
+      <a href="#" onclick="hideAndShow()">Hide</a>
+      <hr>
+    </div>
+
+    <p id="count"></p>
+    <div id="questionContainer">
+      <div id="questions"></div>
+      <div id="submit"></div>
+    </div>
+    <div id="outOf"></div>
+    <div id="right"></div>
+    <div id="wrong"></div>
+    <div id="allQuestions"></div>
+    <div id="reset"></div>
+
+    <input id="output" value="Advanced Output" disabled>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
